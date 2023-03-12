@@ -112,6 +112,11 @@ handlers[Language.TFSpecificItemBroadcast] = function(body) {
 	this.emit('itemBroadcast', message, proto.user_name, proto.was_destruction, defindex);
 };
 
+handlers[Language.FulfillDynamicRecipeComponentResponse] = function(body) {
+	this.emit('recipeFullfilled', message, proto.user_name, proto.was_destruction, defindex);
+};
+
+
 // Trading
 handlers[Language.Trading_InitiateTradeRequest] = function(body) {
 	let tradeID = body.readUint32();

@@ -182,6 +182,17 @@ TeamFortress2.prototype.trade = function(steamID) {
 	this._send(Language.Trading_InitiateTradeRequest, null, buffer);
 };
 
+/**
+ * @param {CMsgRecipeComponent=} [recipe]
+ * @param {ICMsgFulfillDynamicRecipeComponent=} [components]
+ */
+TeamFortress2.prototype.fulfillRecipe = function (recipe, components) {
+    this._send(Language.FulfillDynamicRecipeComponent, Schema.CMsgFulfillDynamicRecipeComponent, {
+        'toolItemId': recipe,
+        'consumptionComponents': components
+    })
+};
+
 TeamFortress2.prototype.cancelTradeRequest = function() {
 	let buffer = new ByteBuffer(0, ByteBuffer.LITTLE_ENDIAN);
 	this._send(Language.Trading_CancelSession, null, buffer);
